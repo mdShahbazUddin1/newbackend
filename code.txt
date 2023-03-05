@@ -1,0 +1,16 @@
+adminBtn.addEventListener("click",()=>{
+  if(loginInput.value !="" && loginInput.value==="gomytrip@gmail.com"){
+    window.location.assign("hotelSearch.html");
+  }
+})
+
+
+
+ if (loginPopUpBtn.innerText != "Login or create account") {
+    console.log("im clcik")
+    popUp.style.display = "none";
+
+  }
+
+
+let adminBtn = document.getElementById("admin-btn");

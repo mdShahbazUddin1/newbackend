@@ -1,0 +1,16 @@
+window.addEventListener("load",()=>{
+  if(localStorage.getItem("user")){
+    loginPopUpBtn.innerText = localStorage.getItem("user");
+  }else{
+     loginPopUpBtn.innerText = "Login"
+  }
+})
+
+formEl.addEventListener("submit", (e) => {
+  e.preventDefault();
+ let data = loginInput.value;
+
+  localStorage.setItem("user", data);
+  loginPopUpBtn.innerText = localStorage.getItem("user");
+  validateInput();
+});
