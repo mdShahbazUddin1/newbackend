@@ -1,0 +1,3 @@
+User has visited /search?movie=RRR and method was GET date is Sun Mar 12 2023 12:33:16 GMT+0530 (India Standard Time)
+User has visited /home and method was GET date is Sun Mar 12 2023 12:33:35 GMT+0530 (India Standard Time)
+User has visited /home and method was GET date is Sun Mar 12 2023 12:58:01 GMT+0530 (India Standard Time)

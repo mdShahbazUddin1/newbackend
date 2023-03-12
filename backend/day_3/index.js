@@ -1,30 +1,31 @@
-const http = require("http");
+const express = require("express");
 const fs = require("fs");
+const logger = require("./controller/logger.router")
 
-const server = http.createServer((req, res) => {
-  if (req.url == "/") {
-    res.setHeader("Content-type", "text/html");
-    res.end("<h1>Home Page</h1>");
-  } else if (req.url == "/about") {
-    res.end("Welcome To My About Page");
-  } else if (req.url === "/data") {
-    fs.readFile("./db.json","utf-8",(err, data) => {
-        if (err) {
-          res.end(err);
-        } else {
-         res.setHeader("Content-type","application/json");
-          res.end(data);
-        }
-      });
-  } else {
-    res.end("Page Not Found");
-  }
-});
+// middlerware
+const app = express();
+app.use(express.json());
+app.use(logger)
 
-server.listen(4500, () => {
-  console.log("server is running successfully");
-});
+//end point
+app.post("/",(req,res)=>{
+  res.send("Hello")
+})
 
-// "/"
-// "/about"
-// "/contact"
+app.get("/",(req,res)=>{
+  const movie = req.query.movie
+  let data = JSON.parse(fs.readFileSync("./db.json","utf-8"));
+  let response =data.movies.filter((ele)=>{
+    return ele.name === movie
+  })
+if(response.length>0){
+  res.send(response[0])
+}else{
+  res.send("No such movie found")
+}
+})
+
+
+app.listen(8080,()=>{
+  console.log("server running")
+})
