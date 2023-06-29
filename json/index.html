@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CRUD Operations</title>
+</head>
+
+<body>
+    <button onclick="fetchData()">Fetch Data</button>
+    <button onclick="addData({ name: 'third post'})">Add Data</button>
+    <button onclick="updateData(1, { name: 'first post'})">Update Data</button>
+    <button onclick="patchData(1, { content: 'Updated content' })">Patch Data</button>
+    <button onclick="deleteData(1)">Delete Data</button>
+</body>
+
+</html>
+
+<script>
+    // Fetch data from http://localhost:3000/post
+        function fetchData() {
+            fetch('http://localhost:3000/post')
+                .then(response => response.json())
+                .then(data => {
+                    // Process the data or update the UI
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+
+
+        // Add new data to http://localhost:3000/post
+        function addData(newData) {
+            fetch('http://localhost:3000/post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Process the response or update the UI
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        // Update data in http://localhost:3000/post using PUT
+        function updateData(id, updatedData) {
+            fetch(`http://localhost:3000/post/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Process the response or update the UI
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        // Update data in http://localhost:3000/post using PATCH
+        function patchData(id, updatedData) {
+            fetch(`http://localhost:3000/post/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Process the response or update the UI
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        // Delete data from http://localhost:3000/post
+        function deleteData(id) {
+            fetch(`http://localhost:3000/post/${id}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Process the response or update the UI
+                        console.log('Data deleted successfully');
+                    } else {
+                        throw new Error('Data deletion failed');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+</script>

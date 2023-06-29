@@ -1,0 +1,16 @@
+{
+  "post": [
+    {
+      "name": "first post",
+      "id": 1
+    },
+    {
+      "name": "second post",
+      "id": 2
+    },
+    {
+      "name": "third post",
+      "id": 3
+    }
+  ]
+}
